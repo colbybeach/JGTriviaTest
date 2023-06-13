@@ -6,7 +6,8 @@ export default function ManageUsers() {
     <div>
        <BasicContainer title={"All Users"} content={
         <>
-            
+          
+            Large Paginated Table with all users/data.
 
         </>
     }/>

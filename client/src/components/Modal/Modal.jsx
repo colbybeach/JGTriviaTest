@@ -6,8 +6,8 @@ export default function Modal({title, content, isOpen, closeModal, secondAction,
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="modal modal-open">
                 <div className="modal-box">
-                    <h2 className="font-bold text-lg uppercase">{title}</h2>
-                    <div>{content}</div>
+                    <h2 className="font-bold text-lg uppercase m-3">{title}</h2>
+                    <div className='mt-5'>{content}</div>
                     <div className="modal-action">
                         {secondActionTitle &&
                             <button

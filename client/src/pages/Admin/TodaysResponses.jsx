@@ -8,7 +8,7 @@ export default function TodaysResponses() {
 
         <BasicContainer title={"Need To Be Decided"} content={
             <>
-                
+              Paginated table with sorting for confidence with the ability to choose right or wrong.  
             </>
 
         }/>
@@ -17,7 +17,7 @@ export default function TodaysResponses() {
 
             <BasicContainer title={"Clown Responses"} content={
                 <>
-                    
+                    Shows all clown responses in paginated table with the ability to choose right or wrong (maybe icon pencil to change).
 
                 </>
 
@@ -25,6 +25,7 @@ export default function TodaysResponses() {
 
             <BasicContainer title={"All Responses"} content={
                 <>
+                    Shows all real responses in paginated table with the ability to choose right or wrong (maybe icon pencil to change).
                 </>
 
             }/>
