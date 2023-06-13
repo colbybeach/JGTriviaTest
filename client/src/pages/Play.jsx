@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BasicButton from '../components/Buttons/BasicButton';
+import Question from '../components/QuestionForm/Question';
+import BasicContainer from '../components/Containers/BasicContainer';
 
 export default function Play() {
 
@@ -10,78 +13,80 @@ export default function Play() {
         // Perform form submission logic here
 
         setSubmitted(true);
-        // Show success toast
+
+
+        //Check to make sure we are actually getting the values.
+        // alert(question1Value + question1Check.toString() + question2Value + question3Value + question4Value);
+
+        //Success toast
         toast.success('Answers Submitted!');
     };
 
+
+    //State Values
     const [submitted, setSubmitted] = useState(false);
+    const [question1Value, setQuestion1Value] = useState("");
+    const [question1Check, setQuestion1Check] = useState(false);
+    const [question2Value, setQuestion2Value] = useState("");
+    const [question2Check, setQuestion2Check] = useState(false);
+    const [question3Value, setQuestion3Value] = useState("");
+    const [question3Check, setQuestion3Check] = useState(false);
+    const [question4Value, setQuestion4Value] = useState("");
+    const [question4Check, setQuestion4Check] = useState(false);
 
     return (
-        <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">
-            <h2 className="text-xl font-bold mb-4">Questions</h2>
 
-            <div className="mb-4">
-                <label htmlFor="question1" className="block font-semibold mb-2">
-                    Question 1
-                </label>
-                <input
-                    type="text"
-                    id="question1"
-                    name="question1"
-                    disabled={submitted}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
-                />
-            </div>
+        <BasicContainer title={"Today's Questions"} content={
 
-            <div className="mb-4">
-                <label htmlFor="question2" className="block font-semibold mb-2">
-                    Question 2
-                </label>
-                <input
-                    type="text"
-                    id="question2"
-                    name="question2"
-                    disabled={submitted}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
-                />
-            </div>
+            <>
+            
 
-            <div className="mb-4">
-                <label htmlFor="question3" className="block font-semibold mb-2">
-                    Question 3
-                </label>
-                <input
-                    type="text"
-                    id="question3"
-                    name="question3"
-                    disabled={submitted}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
-                />
-            </div>
+            <Question 
+                text={"Question 1"} 
+                id={"question1"} 
+                disabled={submitted}
+                textValue={question1Value}
+                onTextChange={e => setQuestion1Value(e.target.value)}
+                onCheckChange={e => setQuestion1Check(e.target.checked)}
+                checked={question1Check}
+            />
+            <Question 
+                text={"Question 2"} 
+                id={"question2"} 
+                disabled={submitted}
+                textValue={question2Value}
+                onTextChange={e => setQuestion2Value(e.target.value)}
+                onCheckChange={e => setQuestion2Check(e.target.checked)}
+                checked={question2Check}
+            />
+            <Question 
+                text={"Question 3"} 
+                id={"question3"} 
+                disabled={submitted}
+                textValue={question3Value}
+                onTextChange={e => setQuestion3Value(e.target.value)}
+                onCheckChange={e => setQuestion3Check(e.target.checked)}
+                checked={question3Check}
+            />
+            <Question 
+                text={"Question 4"} 
+                id={"question4"} 
+                disabled={submitted}
+                textValue={question4Value}
+                onTextChange={e => setQuestion4Value(e.target.value)}
+                onCheckChange={e => setQuestion4Check(e.target.checked)}
+                checked={question4Check}
+            />
 
-            <div className="mb-4">
-                <label htmlFor="question4" className="block font-semibold mb-2">
-                    Question 4
-                </label>
-                <input
-                    type="text"
-                    id="question4"
-                    name="question4"
-                    disabled={submitted}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
-                />
-            </div>
-
-            <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
-                onClick={handleSubmit}
-           >
-                Submit
-            </button>
+            <BasicButton 
+                onClick={handleSubmit} 
+                text={"Submit"}
+                type={"submit"}
+            />
 
             <ToastContainer position="top-center" autoClose={500} hideProgressBar />
-
-        </div>
+            
+            </>
+         }/>    
     );
 }
