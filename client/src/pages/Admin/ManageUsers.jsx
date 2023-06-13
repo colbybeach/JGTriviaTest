@@ -1,5 +1,6 @@
 import React from 'react'
 import BasicContainer from '../../components/Containers/BasicContainer'
+import EditableTable from '../../components/Table/BasicTable'
 
 export default function ManageUsers() {
   return (
@@ -7,7 +8,7 @@ export default function ManageUsers() {
        <BasicContainer title={"All Users"} content={
         <>
           
-            Large Paginated Table with all users/data.
+            <EditableTable />
 
         </>
     }/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import BasicContainer from '../components/Containers/BasicContainer'
-import EditableTable from '../components/Table/EditableTable'
+import EditableTable from '../components/Table/BasicTable'
 
 export default function Profile() {
   return (
@@ -9,7 +9,7 @@ export default function Profile() {
     
         - Profile Picture, Email, total Points, Clown points, day streak?, yesterday stats
 
-        <EditableTable />
+        <EditableTable edit={true}/>
     
       </>
     }/>
