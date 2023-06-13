@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react'
-import BasicButton from '../../components/Buttons/BasicButton'
 import YesterdaysResults from './YesterdaysResults';
 import OverallLeaderboard from './OverallLeaderboard';
 

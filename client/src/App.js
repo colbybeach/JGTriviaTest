@@ -10,7 +10,7 @@ import Admin from './pages/Admin/Admin';
 function App() {
   return (
     <Router>
-      <div className="bg-gray-800 mb-10">
+      <div className="bg-neutral mb-10">
         <nav className="container mx-auto flex items-center justify-between py-4">
           <h1 className="text-white text-2xl font-bold">JG TRIVIA</h1>
           <ul className="flex space-x-4">

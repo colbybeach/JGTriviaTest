@@ -12,7 +12,8 @@ export default function Question({ text, id, disabled, textValue, onTextChange, 
                 disabled={disabled}
                 value={textValue}
                 onChange={onTextChange}
-                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500"
+                placeholder='Type here...'
+                className="w-full input input-bordered input-secondary"
             />
 
 
@@ -20,7 +21,7 @@ export default function Question({ text, id, disabled, textValue, onTextChange, 
                 <input
                     type="checkbox"
                     id={`${id}-checkbox`}
-                    className="mr-2"
+                    className="mr-2 checkbox" 
                     checked={checked}
                     onChange={onCheckChange}
                     disabled={disabled}

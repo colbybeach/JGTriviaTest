@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import BasicButton from '../components/Buttons/BasicButton';
 import Question from '../components/QuestionForm/Question';
 import BasicContainer from '../components/Containers/BasicContainer';
+import Modal from '../components/Modal/Modal';
 
 export default function Play() {
 
@@ -12,6 +12,7 @@ export default function Play() {
 
         // Perform form submission logic here
 
+        setModalOpen(false);
         setSubmitted(true);
 
 
@@ -24,6 +25,7 @@ export default function Play() {
 
 
     //State Values
+    const [isModalOpen, setModalOpen] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [question1Value, setQuestion1Value] = useState("");
     const [question1Check, setQuestion1Check] = useState(false);
@@ -80,11 +82,21 @@ export default function Play() {
 
             <button 
                 className="btn btn-primary"
-                onClick={handleSubmit}
+                onClick={() => setModalOpen(true)}
                 type='submit'
+                disabled={submitted}
             >
                 Submit
             </button>
+
+            <Modal 
+                isOpen={isModalOpen} 
+                closeModal={() => setModalOpen(false)} 
+                title={"Are You Sure?"} 
+                content={"Are you sure you want to submit your answers? You can't change them after the submitting."} 
+                secondAction={handleSubmit}
+                secondActionTitle={"Submit Answers"}
+            />
 
 
             <ToastContainer position="top-center" autoClose={500} hideProgressBar />
