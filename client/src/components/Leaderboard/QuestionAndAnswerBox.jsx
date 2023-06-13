@@ -7,7 +7,7 @@ export default function QuestionAndAnswerBox({question, answer, percentage, clow
     <BasicContainer title={question} content={
 
         <div className='flex flex-col space-y-5'>
-           <span className='text-4xl font-bold text-blue-500'>{answer}</span>
+           <span className='text-4xl font-bold text-accent'>{answer}</span>
            <span>{percentage}% of people answered this correctly.</span>
 
            <span className='font-bold'>Clown Attempts:</span>
@@ -19,7 +19,7 @@ export default function QuestionAndAnswerBox({question, answer, percentage, clow
                 </div>
             ))}
 
-            <BasicButton text={"Vote For Clown"}/>
+            <button className='btn btn-secondary'>Vote For Clown</button>
 
 
         </div>

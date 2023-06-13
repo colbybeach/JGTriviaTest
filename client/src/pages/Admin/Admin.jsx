@@ -12,9 +12,18 @@ export default function Admin() {
 
   return (
     <div>
-      <BasicButton text="Manage Questions" active={active === 0} onClick={() => setActive(0)}/>
-      <BasicButton text="Users" active={active === 1} onClick={() => setActive(1)}/>
-      <BasicButton text="Today's Reponses" active={active === 2} onClick={() => setActive(2)}/>
+
+      <button className={"mx-3 btn " + (active === 0 ? "btn-primary" : "btn-outline")} onClick={() => setActive(0)}>
+        Manage Questions
+      </button>
+
+      <button className={"mx-3 btn " + (active === 1 ? "btn-primary" : "btn-outline")} onClick={() => setActive(1)}>
+        Users
+      </button>
+
+      <button className={"mx-3 btn " + (active === 2 ? "btn-primary" : "btn-outline")} onClick={() => setActive(2)}>
+        Today's Responses
+      </button>
 
       {active === 0 ? 
       <ManageQuestions /> :

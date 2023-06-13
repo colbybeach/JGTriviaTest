@@ -78,11 +78,14 @@ export default function Play() {
                 checked={question4Check}
             />
 
-            <BasicButton 
-                onClick={handleSubmit} 
-                text={"Submit"}
-                type={"submit"}
-            />
+            <button 
+                className="btn btn-primary"
+                onClick={handleSubmit}
+                type='submit'
+            >
+                Submit
+            </button>
+
 
             <ToastContainer position="top-center" autoClose={500} hideProgressBar />
             

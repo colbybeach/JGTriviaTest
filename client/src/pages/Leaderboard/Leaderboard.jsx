@@ -11,12 +11,19 @@ export default function Leaderboard() {
 
   return (
     <div>
-      <BasicButton text="Yesterday's Results" active={active === 0} onClick={() => setActive(0)}/>
-      <BasicButton text="Overall Leaderboard" active={active === 1} onClick={() => setActive(1)}/>
+
+      <button className={"mx-3 btn " + (active === 0 ? "btn-primary" : "btn-outline")} onClick={() => setActive(0)}>
+        Yestery's Results
+      </button>
+
+      <button className={"btn " + (active === 1 ? "btn-primary" : "btn-outline")} onClick={() => setActive(1)}>
+        Overall Leaderboard
+      </button>
 
       {active === 0 ? 
-      <YesterdaysResults /> :
-      <OverallLeaderboard /> 
+        <YesterdaysResults /> 
+      :
+        <OverallLeaderboard /> 
       }
 
     </div>
