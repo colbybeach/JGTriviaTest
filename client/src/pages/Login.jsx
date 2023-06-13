@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  return (
+  const navigate = useNavigate();
 
-    /** This is bad but just temp **/
-    <button type="button" class="login-with-google-btn" >
-        Sign in with Google
+  const handleLogin = () => {
+    navigate('/play');
+  };
+
+  return (
+    <button type="button" className="login-with-google-btn" onClick={handleLogin}>
+      Sign in with Google
     </button>
-  )
+  );
 }

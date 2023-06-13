@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
+        <nav className='m-10'>
           <ul>
             <li>
               <Link to="/login">Login</Link>
