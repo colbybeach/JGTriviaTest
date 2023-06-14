@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionAndAnswerBox from '../../components/Leaderboard/QuestionAndAnswerBox'
+import QuestionAndAnswerBox from '../../components/QuestionAndAnswerBox/QuestionAndAnswerBox'
 
 export default function YesterdaysResults() {
 
