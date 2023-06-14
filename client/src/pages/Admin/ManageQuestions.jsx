@@ -1,9 +1,30 @@
 import React, { useState } from 'react'
 import BasicContainer from '../../components/Containers/BasicContainer'
+import BasicTable from '../../components/Table/BasicTable';
 
 export default function ManageQuestions() {
 
     const [randomSelect, setRandomSelect] = useState(true);
+
+    const triviaQuestions = [
+        {
+          id: 1,
+          text: "What is the capital of France?",
+          answer: "Paris",
+          level: "Easy",
+          category: "Geography"
+        },
+        {
+          id: 2,
+          text: "What is the symbol for the element Iron?",
+          answer: "Fe",
+          level: "Medium",
+          category: "Science"
+        },
+        // Add more trivia questions as needed
+      ];
+    
+      const editKeys = [1,2,3,4]
 
 
     return (
@@ -24,7 +45,7 @@ export default function ManageQuestions() {
                             Randomly Generated
                         </div>
 
-                        TABLE (if unchecked make it editable)
+                       <BasicTable edit={false} data={triviaQuestions} editKeys={editKeys} rowsPerPage={5} />
 
                     </>
 
@@ -32,7 +53,7 @@ export default function ManageQuestions() {
 
                 <BasicContainer title={"Todays Questions"} content={
                     <>
-                        Editable Table With Questions.
+                       <BasicTable edit={true} data={triviaQuestions} editKeys={editKeys} rowsPerPage={5} />
                     </>
 
                 } />
@@ -41,7 +62,7 @@ export default function ManageQuestions() {
 
             <BasicContainer title={"All Questions"} content={
                 <>
-                    Large Paginated Table with all questions/data.
+                    <BasicTable edit={true} data={triviaQuestions} editKeys={editKeys} rowsPerPage={5} />
                 </>
 
             } />

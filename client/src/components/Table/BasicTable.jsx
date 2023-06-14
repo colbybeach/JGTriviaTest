@@ -1,45 +1,122 @@
 import React, { useState } from 'react';
 
-export default function BasicTable({edit, data, editKeys}) {
-
-
+export default function BasicTable({ edit, data, editKeys, rowsPerPage }) {
   const [tableData, setTableData] = useState(data);
-  const [editMode, setEditMode] = useState(false);
-  const [editedData, setEditedData] = useState([]);
+  const [editedData, setEditedData] = useState({});
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(tableData.length / rowsPerPage);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = tableData.slice(indexOfFirstRow, indexOfLastRow);
 
   const handleEdit = (id) => {
     const rowToEdit = tableData.find((item) => item.id === id);
     setEditedData({ ...rowToEdit });
-    setEditMode(true);
+    setTableData((prevData) =>
+      prevData.map((item) => (item.id === id ? { ...item, editing: true } : item))
+    );
   };
 
-  const handleSave = () => {
-    const updatedData = tableData.map((item) => {
-      if (item.id === editedData.id) {
-        return { ...editedData };
-      }
-      return item;
-    });
-    setTableData(updatedData);
-    setEditMode(false);
-    setEditedData([]);
+  const handleSave = (id) => {
+    setTableData((prevData) =>
+      prevData.map((item) =>
+        item.id === id ? { ...item, editing: false } : item
+      )
+    );
+    setEditedData({});
   };
 
-  const handleCancel = () => {
-    setEditMode(false);
-    setEditedData([]);
+  const handleCancel = (id) => {
+    setTableData((prevData) =>
+      prevData.map((item) =>
+        item.id === id ? { ...item, editing: false } : item
+      )
+    );
+    setEditedData({});
   };
 
-  const handleInputChange = (e) => {
-    setEditedData({ ...editedData, [e.target.name]: e.target.value });
+  const handleInputChange = (e, id) => {
+    const { name, value } = e.target;
+    setEditedData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  var tableKeys = Object.keys(tableData[0] || {});
+  const tableKeys = Object.keys(data[0] || {});
+
+  const renderTableRows = currentRows.map((item) => (
+    <tr key={item.id}>
+      {tableKeys.map((key, index) => (
+        editKeys.includes(index) ? (
+          <td key={key} className="border px-4 py-2">
+            {item.editing ? (
+              <input
+                type="text"
+                name={key}
+                value={editedData[key] || ''}
+                onChange={(e) => handleInputChange(e, item.id)}
+                className="input input-bordered w-full"
+              />
+            ) : (
+              item[key]
+            )}
+          </td>
+        ) : (
+          <td className="border px-4 py-2" key={key}>
+            {item[key]}
+          </td>
+        ))
+      )}
+
+      {edit && (
+        <td className="border px-4 py-2">
+          {!item.editing ? (
+            <button
+              className="btn btn-link"
+              onClick={() => handleEdit(item.id)}
+            >
+              Edit
+            </button>
+          ) : (
+            <>
+              <button
+                className="btn btn-link"
+                onClick={() => handleSave(item.id)}
+              >
+                Save
+              </button>
+              <button
+                className="btn btn-link ml-2"
+                onClick={() => handleCancel(item.id)}
+              >
+                Cancel
+              </button>
+            </>
+          )}
+        </td>
+      )}
+    </tr>
+  ));
+
+  const renderPagination = (
+    <div className='mt-5 space-x-5'>
+
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button 
+          key={i + 1}
+          className={`btn ${i + 1 === currentPage ? 'btn-primary' : 'btn-outline'}`}
+          onClick={() => setCurrentPage(i + 1)}
+
+        >
+          {i + 1}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div className="max-w-full overflow-x-auto">
       <table className="table-auto w-full">
-
         <thead>
           <tr>
             {tableKeys.map((header) => (
@@ -48,74 +125,14 @@ export default function BasicTable({edit, data, editKeys}) {
               </th>
             ))}
 
-            {edit &&
-              <th className="px-4 py-2">Edit</th>
-            }
+            {edit && <th className="px-4 py-2">Edit</th>}
           </tr>
         </thead>
 
-        <tbody>
-
-          {tableData.map((item) => (
-            <tr key={item.id}>
-
-              {tableKeys.map((key, index) => (
-                editKeys.includes(index) ?
-                <td key={key} className="border px-4 py-2">
-                  {editMode && editedData.id === item.id ? (
-                    <input
-                      type="text"
-                      name={key}
-                      value={editedData[key] || ''}
-                      onChange={handleInputChange}
-                      className="input input-bordered w-full"
-                      />
-                  ) : (
-                    item[key]
-                  )}
-                </td>
-                :
-                <td className="border px-4 py-2">{item[key]}</td>
-                
-              ))}
-
-
-
-              {edit &&
-                <td className="border px-4 py-2">
-                  {!editMode || editedData.id !== item.id ? (
-                    <button
-                      className="btn btn-link"
-                      onClick={() => handleEdit(item.id)}
-                    >
-                      Edit
-                    </button>
-                  ) : (
-                    <>
-                      <button
-                        className="btn btn-link"
-                        onClick={handleSave}
-                      >
-                        Save
-                      </button>
-                      <button
-                        className="btn btn-link ml-2"
-                        onClick={handleCancel}
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  )}
-                </td>
-              }
-
-
-            </tr>
-          ))}
-
-
-        </tbody>
+        <tbody>{renderTableRows}</tbody>
       </table>
+
+      {totalPages > 1 && renderPagination}
     </div>
   );
 }
