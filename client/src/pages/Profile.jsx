@@ -2,6 +2,7 @@ import React from 'react'
 import BasicContainer from '../components/Containers/BasicContainer'
 import ProfilePicture from '../components/ProfilePicture/ProfilePicture'
 import shrek from '../resources/profilePic.jpg'
+import { Authenticator } from '@aws-amplify/ui-react';
 
 export default function Profile() {
 
@@ -17,6 +18,12 @@ export default function Profile() {
         <span className='text-xl'>Clown Points: 6969696969696969</span>
         <span className='text-md'>420 Day Streak</span>
 
+
+      <Authenticator>
+      {({ signOut }) => (
+          <button className="btn btn-primary" onClick={signOut}>Sign out</button>
+      )}
+      </Authenticator>
 
     
       </div>
