@@ -16,7 +16,6 @@ export default function Profile() {
         <span className='text-accent'>soger@jahnelgroup.com</span>
         <span className='text-xl'>Points: 0</span>
         <span className='text-xl'>Clown Points: 6969696969696969</span>
-        <span className='text-md'>420 Day Streak</span>
 
 
       <Authenticator>

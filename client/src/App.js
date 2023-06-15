@@ -23,9 +23,6 @@ function App() {
           <h1 className="text-white text-2xl font-bold">JG TRIVIA</h1>
           <ul className="flex space-x-4">
             <li>
-              <Link to="/login" className="text-white hover:text-gray-300">Login</Link>
-            </li>
-            <li>
               <Link to="/profile" className="text-white hover:text-gray-300">Profile</Link>
             </li>
             <li>
